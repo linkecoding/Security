@@ -8,6 +8,11 @@ import org.bouncycastle.crypto.digests.MD4Digest;
 
 import cn.codekong.util.Utils;
 
+/**
+ * MD¿‡º”√‹À„∑®
+ * @author szh
+ *
+ */
 public class MDEncrypt {
 	
 	/**
