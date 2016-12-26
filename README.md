@@ -1,73 +1,88 @@
 #java常见的加密算法封装
 
-```
-目前支持的加密种类
+## 目前支持的加密种类
+
+**MD类加密算法**
+
 ```
 1. MD2
-2. MD4
-3. MD5
-4. SHA-1
-5. SHA-224
-5. SHA-256
+2. MD5
+```
+
+**注：JDK中未实现MD4加密,如若需要可以借助于项目根目录下的lib文件夹中的包进行MD4加密**
+
+**SHA类加密算法**
+
+```
+1. SHA-1
+2. SHA-224
+3. SHA-256
+4. SHA-384
 5. SHA-512
-
-**注：JDK中未实现MD4加密,故使用第三方包,第三方包在项目根目录的lib目录下,如果不使用MD4加密可以不引入第三方包**
-
-> `MDEncrypt`类加密使用方法
-
-```
-方法一
-```
-> 将项目根目录的jar文件夹下的jar包引入项目即可
-
-```
-方法二
 ```
 
-1. 将cn.codekong.md目录和cn.codekong.util目录拷贝到项目中
+**MAC类加密算法**
+```
+1. HmacMD5
+2. HmacSHA1
+3. HmacSHA224
+4. HmacSHA256
+5. HmacSHA384
+6. HmacSHA512
+```
+**注：JDK中未实现HmacMD2 HmacMD4加密,如若需要可以借助于项目根目录下的lib文件夹中的包进行加密实现**
 
-2. 如果需要使用MD4加密,还需要将项目根目录下的lib目录的jar包添加到项目的BuildPath
-
-3. 调用方法
+> 加密类加密使用方法
 
 ```
-/**
- * MD类算法使用实例
- */
-//MD2加密
-System.out.println(MDEncrypt.mdEncrypt("123", MDKind.MD2.toString()));
-//MD4加密
-System.out.println(MDEncrypt.mdEncrypt("123", MDKind.MD4.toString()));
-//MD5加密
-System.out.println(MDEncrypt.mdEncrypt("123", MDKind.MD5.toString()));
+将项目根目录的jar文件夹下的jar包引入项目即可
 ```
 
-> `SHAEncrypt`类加密使用方法
+> 调用方法
 
 ```
-方法一
-```
-> 将项目根目录的jar文件夹下的jar包引入项目即可
+public class EncryptTest {
+	public static void main(String[] args) {
+		/**
+		 * MD类算法使用实例
+		 */
+		//MD2加密
+		System.out.println(MDEncrypt.mdEncrypt("123", MDKind.MD2));
+		//MD5加密
+		System.out.println(MDEncrypt.mdEncrypt("123", MDKind.MD5));
+		
+		/**
+		 * SHA类算法使用实例
+		 */
+		//SHA1加密
+		System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA1));
+		//SHA-224加密
+		System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA224));
+		//SHA-256加密
+		System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA256));
+		//SHA-384加密
+		System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA384));
+		//SHA-512加密
+		System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA512));
+		
+		/**
+		 * MAC类算法测试
+		 */
+		//HmacMD5加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacMD5));
+		//HmacSHA1加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacSHA1));
+		//HmacSHA224加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacSHA224));
+		//HmacSHA256加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacSHA256));
+		//HmacSHA384加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacSHA384));
+		//HmacSHA512加密
+		System.out.println(MACEncrypt.macEncrypt("123", MACKind.HmacSHA512));
+	}
+}
 
 ```
-方法二
-```
 
-1. 将cn.codekong.md目录和cn.codekong.util目录拷贝到项目中
-
-2. 调用方法
-
-```
-/**
-* SHA类算法使用实例
-*/
-//SHA1加密
-System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA1.toString()));
-//SHA-224加密
-System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA224.toString()));
-//SHA-256加密
-System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA256.toString()));
-//SHA-512加密
-System.out.println(SHAEncrypt.shaEncrypt("123", SHAKind.SHA512.toString()));
-```
 **注：cn.codekong.test目录下为使用方法示例**

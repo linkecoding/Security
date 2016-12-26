@@ -2,10 +2,12 @@ package cn.codekong.sha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import cn.codekong.util.SHAKind;
 import cn.codekong.util.Utils;
 
 /**
- * SHA类算法
+ * SHA类加密算法
  * @author szh
  *
  */
@@ -16,7 +18,8 @@ public class SHAEncrypt {
 	 * @param src
 	 * @return
 	 */
-	public static String shaEncrypt(String src, String method){
+	public static String shaEncrypt(String src, SHAKind shaKind){
+		String method = shaKind.toString();
 		String res = null;
 		method = method.substring(0, 3) + "-" + method.substring(3);
 		try {
